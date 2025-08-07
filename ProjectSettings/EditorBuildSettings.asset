@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/CharactersTestScene.unity
+    guid: 1c37ea04347779847ad31869813ada08
+  - enabled: 1
+    path: Assets/Scenes/ChronosTest.unity
+    guid: 2fbfeb4deb1f39549b900ce16c267c92
+  - enabled: 1
+    path: Assets/Scenes/MainTestScene.unity
+    guid: 6f737a9a6132d3c45bf7f132789c0cb0
+  - enabled: 1
+    path: Assets/Scenes/PlayerScene.unity
+    guid: d924cb5732d822f4ab1e3bd4e83e817c
+  - enabled: 1
+    path: Assets/Chronos/Ludiq/Ludiq.Chronos/Example/Example.unity
+    guid: f7f1de99a6d280f4b899d4559f8ebc40
+  - enabled: 1
+    path: Assets/Hawk Quan/Q Inventory System/Example/3D/3D Example.unity
+    guid: 2fcd457260c118c4d8324683f4ab7e51
+  - enabled: 1
+    path: Assets/Scenes/InventoryScene.unity
+    guid: 4e1ed8a6e3504ce45b8904ba4f137656
+  - enabled: 1
+    path: Assets/Scenes/TimeTest.unity
+    guid: 1bcd44273c451474790d3da0462b492a
+  - enabled: 1
+    path: Assets/ObstacleCoursePack/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  m_configObjects: {}

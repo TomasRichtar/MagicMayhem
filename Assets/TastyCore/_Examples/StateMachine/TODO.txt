@@ -1,0 +1,1 @@
+Create example scene for State Machine usage
