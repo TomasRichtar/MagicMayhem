@@ -34,7 +34,7 @@ public class Goblin : BasicEnemy
     private float HistoricalPositionInterval;
     private float LastHistoryRecordedTime;
 
-    private PlayerMovementAdvance PlayerCharacterController;
+    private Rigidbody PlayerRigidbody;
     private float SpherecastRadius = 0.5f;
     private float LastAttackTime;
 
@@ -47,7 +47,6 @@ public class Goblin : BasicEnemy
     [SerializeField] private float _attackForce = 32;
     [SerializeField] private float _attackForceUp = 8;
     [SerializeField] private float _launchAngle = 45f; // Úhel v editoru
-    public RewindableObjectPoolManager RewindableObjectPoolManager;
     public override void CharacterSetUp()
     {
         CharacterDirector director = new CharacterDirector();
@@ -64,13 +63,13 @@ public class Goblin : BasicEnemy
         transform.LookAt(Target);
         yield return null;
 
-        if (PlayerCharacterController == null)
+        if (PlayerRigidbody == null)
         {
-            PlayerCharacterController = Target.GetComponent<PlayerMovementAdvance>();
+            PlayerRigidbody = Target.GetComponent<Rigidbody>();
         }
 
         ThrowData throwData = CalculateThrowData(
-            Target.position + PlayerCharacterController.rb.centerOfMass,
+            Target.position + PlayerRigidbody.centerOfMass,
             _spellCast.position
         );
 
@@ -93,7 +92,7 @@ public class Goblin : BasicEnemy
 
         if (MovementPredictionMode == PredictionMode.CurrentVelocity)
         {
-            playerMovement = PlayerCharacterController.rb.velocity * time;
+            playerMovement = PlayerRigidbody.velocity * time;
         }
         else
         {
@@ -109,9 +108,9 @@ public class Goblin : BasicEnemy
         }
 
         Vector3 newTargetPosition = new Vector3(
-            Target.position.x + PlayerCharacterController.rb.centerOfMass.x + playerMovement.x,
-            Target.position.y + PlayerCharacterController.rb.centerOfMass.y + playerMovement.y,
-            Target.position.z + PlayerCharacterController.rb.centerOfMass.x + playerMovement.z
+            Target.position.x + PlayerRigidbody.centerOfMass.x + playerMovement.x,
+            Target.position.y + PlayerRigidbody.centerOfMass.y + playerMovement.y,
+            Target.position.z + PlayerRigidbody.centerOfMass.x + playerMovement.z
         );
 
         // Option Calculate again the trajectory based on target position
@@ -133,8 +132,6 @@ public class Goblin : BasicEnemy
         Rigidbody rb = Instantiate(_projectile, _spellCast.position, Quaternion.identity).GetComponent<Rigidbody>();
 
         rb.velocity = ThrowData.ThrowVelocity;
-
-        RewindableObjectPoolManager.AddObject(rb.GetComponent<RewindableDestroy>());
     }
 
     private ThrowData CalculateThrowData(Vector3 TargetPosition, Vector3 StartPosition)

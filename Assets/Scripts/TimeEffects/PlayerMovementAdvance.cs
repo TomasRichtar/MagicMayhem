@@ -80,8 +80,6 @@ namespace RichiGames
 
         private void Update()
         {
-            if (TimeController.Instance.IsRewinding == true) return;
-
             if (state == MovementState.attacking) return;
 
             // ground check

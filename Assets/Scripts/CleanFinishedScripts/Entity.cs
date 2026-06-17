@@ -21,9 +21,6 @@ namespace RichiGames
         [SerializeField] private MicroBar _healthBar;
         protected Transform _playerTransform;
 
-        private RewindableDestroy _rewindableDestroy;
-        private RewindableObjectPoolManager _rewindableObjectPoolManager;
-
         public bool IsImmuneToDamage { get => _isImmuneToDamage; }
         public Character Character { get => _character; }
         public Animator Animator { get => _animator; }
@@ -33,8 +30,6 @@ namespace RichiGames
         protected virtual void Awake()
         {
             CharacterSetUp();
-            _rewindableDestroy = GetComponent<RewindableDestroy>();
-            _rewindableObjectPoolManager = FindFirstObjectByType<RewindableObjectPoolManager>();
             _playerTransform = FindFirstObjectByType<PlayerCharacter>().transform;
 
             if (_healthBar)
@@ -85,10 +80,6 @@ namespace RichiGames
             //Anim
 
             //Last call
-            if (_rewindableDestroy)
-            {
-                _rewindableObjectPoolManager.DestroyObject(_rewindableDestroy);
-            }
 
             if (_character.Name == "Player")
             {

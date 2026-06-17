@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class ExplosionProjectile : MonoBehaviour
 {
-    [SerializeField] private RewindableDestroy _destroyableObject;
     [SerializeField] private Explosion _explosionPrefab;
-    private RewindableObjectPoolManager _rewindableObjectPoolManager;
 
     public int damage = 50;
     public float explosionRadius = 5f;
@@ -18,12 +16,10 @@ public class ExplosionProjectile : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _rewindableObjectPoolManager = FindFirstObjectByType<RewindableObjectPoolManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (TimeController.Instance.IsRewinding == true) return;
         if (TimeController.Instance.IsStoppedTime == true) return;
 
         _rb.velocity = Vector3.zero;
@@ -31,7 +27,7 @@ public class ExplosionProjectile : MonoBehaviour
 
         Explode();
 
-        _rewindableObjectPoolManager.DestroyObject(_destroyableObject);
+        Destroy(gameObject);
     }
 
     private void Explode()

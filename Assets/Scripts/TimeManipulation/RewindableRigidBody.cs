@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RichiGames
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class RewindableRigidBody : RewindableObject
+    public class RewindableRigidBody : TimeObject
     {
         private Rigidbody _rigBody;
 
@@ -20,6 +20,10 @@ namespace RichiGames
             _rigBody.isKinematic = false;
             _rigBody.useGravity = true;
 
+            RewindData pointInTime = _rewindData.First.Value;
+            transform.position = pointInTime.Position;
+            transform.rotation = pointInTime.Rotation;
+
             if (_rewindData.Count > 0)
             {
                 _rigBody.velocity = _rewindData.First.Value.Velocity;
@@ -31,16 +35,6 @@ namespace RichiGames
 
         public override void StopTime()
         {
-            _rigBody.isKinematic = true;
-        }
-
-        public override void RecordStep()
-        {
-            if (_rewindData.Count > Mathf.Round(TimeController.Instance.RewindStorageLimit / Time.fixedDeltaTime))
-            {
-                _rewindData.RemoveLast();
-            }
-
             RewindData pointInTime = new RewindData(
                 transform.position,
                 transform.rotation,
@@ -50,20 +44,8 @@ namespace RichiGames
                 _rigBody.angularDrag);
 
             _rewindData.AddFirst(pointInTime);
-        }
 
-        public override void RewindStep()
-        {
-            if (_rewindData.Count == 0)
-            {
-                return;
-            } 
-
-            RewindData pointInTime = _rewindData.First.Value;
-            transform.position = pointInTime.Position;
-            transform.rotation = pointInTime.Rotation;
-
-            _rewindData.RemoveFirst();
+            _rigBody.isKinematic = true;
         }
     }
 }

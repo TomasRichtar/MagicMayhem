@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace RichiGames
 {
-    public interface IRewindable
+    public interface ITimeObject
     {
-        abstract void RewindStep();
-        abstract void RecordStep();
         abstract void StopTime();
         abstract void ContinueTime();
     }

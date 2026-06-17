@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 3346709848098764500}
   - component: {fileID: 1902013902300076064}
   - component: {fileID: 4401419438583555592}
-  - component: {fileID: 5479733934435821204}
   - component: {fileID: 3625111964988317638}
-  - component: {fileID: 3736513302160184356}
   - component: {fileID: -214214523724235784}
-  m_Layer: 0
+  - component: {fileID: 8572831492168077247}
+  m_Layer: 8
   m_Name: ThrowBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,19 +108,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5479733934435821204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6483491565714001556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12374afd26e6634784c57fabb2acc50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ignoreTimeStop: 0
 --- !u!54 &3625111964988317638
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,19 +135,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3736513302160184356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6483491565714001556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c6bf48f6114cb438eac63c2b12bf89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ignoreTimeStop: 0
 --- !u!114 &-214214523724235784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,9 +147,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc2c3c541e878f4bb71c59e70418cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyableObject: {fileID: 5479733934435821204}
   _explosionPrefab: {fileID: 735531494242968426, guid: 8dc9ceb0ce877c44f9a3c5f39b07b942,
     type: 3}
   damage: 50
   explosionRadius: 5
   explosionForce: 500
+--- !u!114 &8572831492168077247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483491565714001556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57f52c92b5129440863107478104180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ignoreTimeStop: 0

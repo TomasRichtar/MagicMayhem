@@ -19,13 +19,6 @@ namespace RichiGames
         public readonly float Number;
         public readonly float TimeBetweenAttacks;
         public readonly float Health;
-        public readonly Dictionary<RewindableDestroy, bool> RewindableObjects;
-
-        // Destroy
-        public RewindData(Dictionary<RewindableDestroy, bool> rewindableObjects)
-        {
-            RewindableObjects = rewindableObjects;
-        }
 
         // Float
         public RewindData(float number)

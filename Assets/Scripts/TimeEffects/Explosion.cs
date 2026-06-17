@@ -9,33 +9,34 @@ public class Explosion : MonoBehaviour
     private float explosionForce;
     private int damage;
 
+    public float duration = 0.3f;
+    private float elapsed = 0f;
+    public float startSize = 1f;
+    private float endSize;
+
+    private void Update()
+    {
+        if (TimeController.Instance.IsStoppedTime) return;
+
+        elapsed += Time.deltaTime;
+        float scale = Mathf.Lerp(startSize, endSize, Mathf.Clamp01(elapsed / duration));
+        transform.localScale = new Vector3(scale, scale, scale);
+
+        if (elapsed >= duration)
+        {
+            ApplyExplosionEffects();
+            Destroy(gameObject);
+        }
+    }
     public void Initialize(float radius, float force, int dmg)
     {
         explosionRadius = radius;
         explosionForce = force;
         damage = dmg;
-        StartCoroutine(ExpandAndExplode());
+        endSize = explosionRadius * 2;
     }
 
-    private IEnumerator ExpandAndExplode()
-    {
-        float duration = 0.3f;
-        float startSize = 1f;
-        float endSize = explosionRadius * 2;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            float scale = Mathf.Lerp(startSize, endSize, elapsed / duration);
-            transform.localScale = new Vector3(scale, scale, scale);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        ApplyExplosionEffects();
-        Destroy(gameObject);
-    }
-
+   
     private void ApplyExplosionEffects()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);

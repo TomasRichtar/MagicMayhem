@@ -28,19 +28,6 @@ namespace asset
         // Update is called once per frame
         void FixedUpdate()
         {
-
-            if (TimeController.Instance.IsRewinding == true)
-            {
-                if (TimeStoppedCarema.Priority != 10)
-                {
-                    TimeStoppedCarema.m_XAxis.Value = FreeLookCamera.m_XAxis.Value;
-                    TimeStoppedCarema.m_YAxis.Value = FreeLookCamera.m_YAxis.Value;
-                    TimeStoppedCarema.Priority = 10;
-                    FreeLookCamera.Priority = 1;
-                }
-                return;
-            }
-
             if (FreeLookCamera.Priority != 10)
             {
                 TimeStoppedCarema.m_XAxis.Value = FreeLookCamera.m_XAxis.Value;

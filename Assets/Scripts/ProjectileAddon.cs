@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ProjectileAddon : MonoBehaviour
 {
-    [SerializeField] private RewindableDestroy _destroyableObject;
-    private RewindableObjectPoolManager _rewindableObjectPoolManager;
     public int damage;
     private bool targetHit;
     private bool byPlayer = false;
@@ -14,7 +12,6 @@ public class ProjectileAddon : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _rewindableObjectPoolManager = FindFirstObjectByType<RewindableObjectPoolManager>();
     }
     public void Casted()
     {
@@ -28,7 +25,7 @@ public class ProjectileAddon : MonoBehaviour
         _rb.useGravity = false;
         transform.localScale = new Vector3(5, 5, 5);
 
-        _rewindableObjectPoolManager.DestroyObject(_destroyableObject);
+        Destroy(gameObject);
 
 
         if (other.gameObject.GetComponent<BasicEnemy>())

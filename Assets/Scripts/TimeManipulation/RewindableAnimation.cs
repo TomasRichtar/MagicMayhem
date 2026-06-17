@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RichiGames
 {
     [RequireComponent(typeof(Animator))]
-    public class RewindableAnimation : RewindableObject
+    public class RewindableAnimation : TimeObject
     {
         private Animator _animator;
 
@@ -26,20 +26,6 @@ namespace RichiGames
             savedNormalizedTime = currentState.normalizedTime % 1;
 
             _animator.speed = 0;
-        }
-
-        public override void ContinueTime()
-        {
-            _animator.Play(savedStateHash, 0, savedNormalizedTime);
-            _animator.speed = 1;
-        }
-
-        public override void RecordStep()
-        {
-            if (_rewindData.Count > Mathf.Round(TimeController.Instance.RewindStorageLimit / Time.fixedDeltaTime))
-            {
-                _rewindData.RemoveLast();
-            }
 
             RewindData rewindData = new RewindData
             (
@@ -48,6 +34,19 @@ namespace RichiGames
                 GetAnimatorParameters()
             );
             _rewindData.AddFirst(rewindData);
+        }
+
+        public override void ContinueTime()
+        {
+            _animator.Play(savedStateHash, 0, savedNormalizedTime);
+            _animator.speed = 1;
+
+
+            RewindData rewindData = _rewindData.First.Value;
+
+            RestoreAnimatorState(rewindData);
+
+            _rewindData.RemoveFirst();
         }
 
         private Dictionary<string, float> GetAnimatorParameters()
@@ -73,16 +72,6 @@ namespace RichiGames
             return parameters;
         }
 
-        public override void RewindStep()
-        {
-            if (_rewindData.Count == 0) return;
-
-            RewindData rewindData = _rewindData.First.Value;
-
-            RestoreAnimatorState(rewindData);
-
-            _rewindData.RemoveFirst();
-        }
 
         private void RestoreAnimatorState(RewindData data)
         {

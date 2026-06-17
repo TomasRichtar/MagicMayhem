@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RichiGames
 {
-    public abstract class RewindableObject : MonoBehaviour, IRewindable
+    public abstract class TimeObject : MonoBehaviour, ITimeObject
     {
         
         [SerializeField] protected bool _ignoreTimeStop = false;
@@ -19,10 +19,6 @@ namespace RichiGames
         }
         private void OnEnable()
         {
-            TimeController.Instance.OnStartRewind += StopTime; // StartRewind would be the same as StopTime method
-            TimeController.Instance.OnStopRewind += ContinueTime; // StopRewind would be the same as ContinueTime method
-            TimeController.Instance.OnRewindStep += RewindStep;
-            TimeController.Instance.OnRecordStep += RecordStep;
             if (_ignoreTimeStop == false)
             {
                 TimeController.Instance.OnStopTime += StopTime;
@@ -32,14 +28,8 @@ namespace RichiGames
 
         private void OnDisable()
         {
-            // Disable on RewindableObjects is called after the destroy/desable on the Singlethon TimeControler 
-            // This will be fixed in the GameManager script - ToDo
             if (TimeController.IsCreated)
             {
-                TimeController.Instance.OnStartRewind -= StopTime; // StartRewind would be the same as StopTime method
-                TimeController.Instance.OnStopRewind -= ContinueTime; // StopRewind would be the same as ContinueTime method
-                TimeController.Instance.OnRewindStep -= RewindStep;
-                TimeController.Instance.OnRecordStep -= RecordStep; 
                 if (_ignoreTimeStop == false)
                 {
                     TimeController.Instance.OnStopTime -= StopTime;
@@ -47,10 +37,6 @@ namespace RichiGames
                 }
             }
         }
-
-        public abstract void RewindStep();
-
-        public abstract void RecordStep();
 
         public abstract void StopTime();
 

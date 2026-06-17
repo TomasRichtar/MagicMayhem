@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6354781947776103353}
   - component: {fileID: 2960910080156470024}
   - component: {fileID: 1158532887027572277}
-  - component: {fileID: 1590932219503125073}
+  - component: {fileID: 7187116595291120772}
   m_Layer: 7
   m_Name: EnemyBear
   m_TagString: Untagged
@@ -135,8 +135,10 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  _enemyState: 
   timeBetweenAttacks: 1
-  alreadyAttacked: 0
+  isReadyToAttack: 0
+  actualTimeBetweenAttacks: 0
   sightRange: 18
   attackRange: 2.33
   playerInSightRange: 0
@@ -154,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ignoreTimeStop: 0
---- !u!114 &1590932219503125073
+--- !u!114 &7187116595291120772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,10 +165,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 176366742646949996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12374afd26e6634784c57fabb2acc50, type: 3}
+  m_Script: {fileID: 11500000, guid: 52f7585d78d28c34487cc1e6abe5fd94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _ignoreTimeStop: 0
+  TimeBetweenAttacks: 0
 --- !u!1 &422337974417831928
 GameObject:
   m_ObjectHideFlags: 0
