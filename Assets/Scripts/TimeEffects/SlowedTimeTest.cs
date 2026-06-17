@@ -39,12 +39,12 @@ public class SlowedTimeTest : MonoBehaviour
 
         if (_localTimeScale < 1f)
         {
-            _originalVelocity = _rigBody.velocity;
-            _rigBody.velocity *= _localTimeScale;
+            _originalVelocity = _rigBody.linearVelocity;
+            _rigBody.linearVelocity *= _localTimeScale;
         }
         else
         {
-            _rigBody.velocity = _originalVelocity;
+            _rigBody.linearVelocity = _originalVelocity;
         }
     }
 

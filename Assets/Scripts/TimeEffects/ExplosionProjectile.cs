@@ -22,7 +22,7 @@ public class ExplosionProjectile : MonoBehaviour
     {
         if (TimeController.Instance.IsStoppedTime == true) return;
 
-        _rb.velocity = Vector3.zero;
+        _rb.linearVelocity = Vector3.zero;
         _rb.useGravity = false;
 
         Explode();
@@ -39,7 +39,7 @@ public class ExplosionProjectile : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Explosion prefab není nastaven!");
+            Debug.LogError("Explosion prefab nenï¿½ nastaven!");
         }
     }
 }

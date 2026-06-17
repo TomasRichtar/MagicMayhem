@@ -29,10 +29,10 @@ namespace RichiGames
 
             if (_rewindData.Count > 0)
             {
-                _rigBody.velocity = _rewindData.First.Value.Velocity;
+                _rigBody.linearVelocity = _rewindData.First.Value.Velocity;
                 _rigBody.angularVelocity = _rewindData.First.Value.AngularVelocity;
-                _rigBody.angularDrag = _rewindData.First.Value.AngularDrag;
-                _rigBody.drag = _rewindData.First.Value.Drag;
+                _rigBody.angularDamping = _rewindData.First.Value.AngularDrag;
+                _rigBody.linearDamping = _rewindData.First.Value.Drag;
             }
         }
 
@@ -41,10 +41,10 @@ namespace RichiGames
             RewindData pointInTime = new RewindData(
                 transform.position,
                 transform.rotation,
-                _rigBody.velocity,
+                _rigBody.linearVelocity,
                 _rigBody.angularVelocity,
-                _rigBody.drag,
-                _rigBody.angularDrag);
+                _rigBody.linearDamping,
+                _rigBody.angularDamping);
 
             _rewindData.AddFirst(pointInTime);
 

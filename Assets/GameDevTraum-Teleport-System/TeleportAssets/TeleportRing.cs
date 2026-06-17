@@ -49,7 +49,7 @@ public class TeleportRing : MonoBehaviour
         Debug.Log("Test");
         enteringGameObject = g;
         enteringRigidbody = r;
-        enterVelocity = Vector3.Magnitude(enteringRigidbody.velocity);
+        enterVelocity = Vector3.Magnitude(enteringRigidbody.linearVelocity);
         enteringGameObject.SetActive(false);
         teleportingParticles.transform.position = enteringGameObject.transform.position;
         teleportingParticles.SetActive(true);
@@ -64,7 +64,7 @@ public class TeleportRing : MonoBehaviour
             direction = Vector3.Normalize(transform.position - bottom.position);
         }
         teleportInProcess = true;
-        r.velocity = direction * enterVelocity * boostFactor;
+        r.linearVelocity = direction * enterVelocity * boostFactor;
         g.SetActive(true);
         g.transform.position = exitPosition;
         teleportingParticles.transform.position = g.transform.position;

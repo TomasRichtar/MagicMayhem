@@ -27,7 +27,7 @@ public class FeedObjects : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         other.gameObject.transform.position = origin.position + Vector3.up * 3f;
-        other.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        other.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
 
 }

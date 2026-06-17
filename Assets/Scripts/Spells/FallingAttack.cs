@@ -16,7 +16,7 @@ public class FallingAttack : Spell
     protected override void Execute()
     {
         Debug.Log("Casting FallingAttack!");
-        playerRb.velocity = Vector3.zero;
+        playerRb.linearVelocity = Vector3.zero;
         playerRb.AddForce(Vector3.down * _jumpValue, ForceMode.Impulse);
     }
 }

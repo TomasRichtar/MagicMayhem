@@ -40,7 +40,7 @@ public class PlayerAttackController : MonoBehaviour
 
             lastInputTime = Time.time;
             _playerMovementAdvance.state = PlayerMovementAdvance.MovementState.attacking;
-            _playerMovementAdvance.rb.velocity = Vector3.zero;
+            _playerMovementAdvance.rb.linearVelocity = Vector3.zero;
 
             if (_playerMovementAdvance.grounded)
             {
@@ -71,7 +71,7 @@ public class PlayerAttackController : MonoBehaviour
         {
             if (!_playerMovementAdvance.grounded)
             {
-                _playerMovementAdvance.rb.velocity = Vector3.zero;
+                _playerMovementAdvance.rb.linearVelocity = Vector3.zero;
             }
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -130,7 +130,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         Debug.Log("Falling Attack");
         chainAttackIndex = 0;
-        _playerMovementAdvance.rb.velocity = Vector3.zero;
+        _playerMovementAdvance.rb.linearVelocity = Vector3.zero;
 
         _staminaBar.UpdateBar(_staminaBar.CurrentValue - 50);
         // Animation

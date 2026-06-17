@@ -115,7 +115,7 @@ public abstract class RewindAbstract : MonoBehaviour
         if (body != null)
         {
             VelocityValues valuesToWrite;
-            valuesToWrite.velocity= body.velocity;
+            valuesToWrite.velocity= body.linearVelocity;
             valuesToWrite.angularVelocity = body.angularVelocity;
             valuesToWrite.angularVelocity2D = 0;
             trackedVelocities.WriteLastValue(valuesToWrite);            
@@ -123,7 +123,7 @@ public abstract class RewindAbstract : MonoBehaviour
         else if (body2!=null)
         {
             VelocityValues valuesToWrite;
-            valuesToWrite.velocity = body2.velocity;
+            valuesToWrite.velocity = body2.linearVelocity;
             valuesToWrite.angularVelocity = Vector3.zero;
             valuesToWrite.angularVelocity2D = body2.angularVelocity;
             trackedVelocities.WriteLastValue(valuesToWrite);
@@ -143,13 +143,13 @@ public abstract class RewindAbstract : MonoBehaviour
         if(body!=null)
         {
             VelocityValues valuesToRead= trackedVelocities.ReadFromBuffer(seconds);
-            body.velocity = valuesToRead.velocity;
+            body.linearVelocity = valuesToRead.velocity;
             body.angularVelocity = valuesToRead.angularVelocity;
         }
         else
         {
             VelocityValues valuesToRead = trackedVelocities.ReadFromBuffer(seconds);
-            body2.velocity = valuesToRead.velocity;
+            body2.linearVelocity = valuesToRead.velocity;
             body2.angularVelocity = valuesToRead.angularVelocity2D;
         }
     }

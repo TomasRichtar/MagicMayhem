@@ -16,7 +16,7 @@ public class JumpAttack : Spell
     protected override void Execute()
     {
         Debug.Log("Casting Jump Attack!");
-        playerRb.velocity = Vector3.zero;
+        playerRb.linearVelocity = Vector3.zero;
         playerRb.AddForce(Vector3.up* _jumpValue, ForceMode.Impulse);
     }
 }

@@ -46,7 +46,7 @@ public class Goblin : BasicEnemy
     [SerializeField] private Transform _spellCast;
     [SerializeField] private float _attackForce = 32;
     [SerializeField] private float _attackForceUp = 8;
-    [SerializeField] private float _launchAngle = 45f; // Úhel v editoru
+    [SerializeField] private float _launchAngle = 45f; // ï¿½hel v editoru
     public override void CharacterSetUp()
     {
         CharacterDirector director = new CharacterDirector();
@@ -92,7 +92,7 @@ public class Goblin : BasicEnemy
 
         if (MovementPredictionMode == PredictionMode.CurrentVelocity)
         {
-            playerMovement = PlayerRigidbody.velocity * time;
+            playerMovement = PlayerRigidbody.linearVelocity * time;
         }
         else
         {
@@ -131,7 +131,7 @@ public class Goblin : BasicEnemy
     {
         Rigidbody rb = Instantiate(_projectile, _spellCast.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-        rb.velocity = ThrowData.ThrowVelocity;
+        rb.linearVelocity = ThrowData.ThrowVelocity;
     }
 
     private ThrowData CalculateThrowData(Vector3 TargetPosition, Vector3 StartPosition)

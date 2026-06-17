@@ -81,7 +81,7 @@ namespace RichiGames
 
             dir = (dir + Vector3.up * upwardBoost).normalized;
 
-            rb.velocity = dir * projectileForce;
+            rb.linearVelocity = dir * projectileForce;
         }
 
         public class AreaEffect

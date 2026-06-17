@@ -21,7 +21,7 @@ public class ProjectileAddon : MonoBehaviour
     {
         if (other.gameObject.GetComponent<ProjectileAddon>()) return;
 
-        _rb.velocity = Vector3.zero;
+        _rb.linearVelocity = Vector3.zero;
         _rb.useGravity = false;
         transform.localScale = new Vector3(5, 5, 5);
 

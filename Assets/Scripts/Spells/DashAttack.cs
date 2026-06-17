@@ -18,7 +18,7 @@ public class DashAttack : Spell
     protected override void Execute()
     {
         Debug.Log("Casting DashAttack!");
-        _playerRb.velocity = Vector3.zero;
+        _playerRb.linearVelocity = Vector3.zero;
         _playerRb.AddForce(_playerTransform.forward * _dashValue, ForceMode.Impulse);
     }
 }

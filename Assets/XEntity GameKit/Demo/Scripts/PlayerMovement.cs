@@ -24,7 +24,7 @@ namespace XEntity.Demo
 
         private void FixedUpdate() 
         {
-            rb.velocity = new Vector3(input.x, rb.velocity.y, input.y);
+            rb.linearVelocity = new Vector3(input.x, rb.linearVelocity.y, input.y);
         }
     }
 }

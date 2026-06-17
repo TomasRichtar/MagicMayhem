@@ -71,7 +71,7 @@ public class EnemyThrowing : MonoBehaviour
             AttackProjectile.transform.SetParent(transform, true);
             AttackProjectile.transform.localPosition = new Vector3(0, 0, 1f);
             AttackProjectile.useGravity = false;
-            AttackProjectile.velocity = Vector3.zero;
+            AttackProjectile.linearVelocity = Vector3.zero;
             StartCoroutine(Attack());
         }
 
@@ -119,7 +119,7 @@ public class EnemyThrowing : MonoBehaviour
 
         if (MovementPredictionMode == PredictionMode.CurrentVelocity)
         {
-            playerMovement = PlayerCharacterController.rb.velocity * time;
+            playerMovement = PlayerCharacterController.rb.linearVelocity * time;
         }
         else
         {
@@ -158,7 +158,7 @@ public class EnemyThrowing : MonoBehaviour
     {
         AttackProjectile.useGravity = true;
         AttackProjectile.isKinematic = false;
-        AttackProjectile.velocity = ThrowData.ThrowVelocity;
+        AttackProjectile.linearVelocity = ThrowData.ThrowVelocity;
     }
 
     private ThrowData CalculateThrowData(Vector3 TargetPosition, Vector3 StartPosition)
